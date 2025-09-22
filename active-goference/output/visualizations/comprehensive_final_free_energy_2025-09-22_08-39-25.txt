@@ -1,0 +1,8 @@
+Active Inference Free Energy Analysis:
+=====================================
+Variational Free Energy (VFE): 1.193196
+  - Used for belief updating from observations
+Expected Free Energy (EFE): 0.000000
+  - Used for policy planning and decision making
+Note: VFE and EFE serve different purposes in active inference
+      They are not summed as they represent different processes

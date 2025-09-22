@@ -1,0 +1,28 @@
+INFO: 2025/09/22 07:03:48 logger.go:34: Starting comprehensive test suite execution
+INFO: 2025/09/22 07:03:48 logger.go:34: Running tests for package: active-goference/pkg/core
+INFO: 2025/09/22 07:03:48 logger.go:34: Found 5 test files in package active-goference/pkg/core
+INFO: 2025/09/22 07:03:48 logger.go:34: Running tests for package: active-goference/pkg/belief
+INFO: 2025/09/22 07:03:48 logger.go:34: Found 5 test files in package active-goference/pkg/belief
+INFO: 2025/09/22 07:03:48 logger.go:34: Running tests for package: active-goference/pkg/inference
+INFO: 2025/09/22 07:03:48 logger.go:34: Found 5 test files in package active-goference/pkg/inference
+INFO: 2025/09/22 07:03:48 logger.go:34: Running tests for package: active-goference/pkg/planning
+INFO: 2025/09/22 07:03:48 logger.go:34: Found 5 test files in package active-goference/pkg/planning
+INFO: 2025/09/22 07:03:48 logger.go:34: Running tests for package: active-goference/pkg/utils
+INFO: 2025/09/22 07:03:48 logger.go:34: Found 5 test files in package active-goference/pkg/utils
+INFO: 2025/09/22 07:03:48 logger.go:34: Test suite execution completed
+INFO: 2025/09/22 07:03:48 logger.go:34: === TEST SUITE SUMMARY ===
+INFO: 2025/09/22 07:03:48 logger.go:34: 🎉 All tests passed!
+INFO: 2025/09/22 07:05:49 logger.go:34: Starting comprehensive test suite execution
+INFO: 2025/09/22 07:05:49 logger.go:34: Running tests for package: active-goference/pkg/core
+INFO: 2025/09/22 07:05:49 logger.go:34: Found 5 test files in package active-goference/pkg/core
+INFO: 2025/09/22 07:05:49 logger.go:34: Running tests for package: active-goference/pkg/belief
+INFO: 2025/09/22 07:05:49 logger.go:34: Found 5 test files in package active-goference/pkg/belief
+INFO: 2025/09/22 07:05:49 logger.go:34: Running tests for package: active-goference/pkg/inference
+INFO: 2025/09/22 07:05:49 logger.go:34: Found 5 test files in package active-goference/pkg/inference
+INFO: 2025/09/22 07:05:49 logger.go:34: Running tests for package: active-goference/pkg/planning
+INFO: 2025/09/22 07:05:49 logger.go:34: Found 5 test files in package active-goference/pkg/planning
+INFO: 2025/09/22 07:05:49 logger.go:34: Running tests for package: active-goference/pkg/utils
+INFO: 2025/09/22 07:05:49 logger.go:34: Found 5 test files in package active-goference/pkg/utils
+INFO: 2025/09/22 07:05:49 logger.go:34: Test suite execution completed
+INFO: 2025/09/22 07:05:49 logger.go:34: === TEST SUITE SUMMARY ===
+INFO: 2025/09/22 07:05:49 logger.go:34: 🎉 All tests passed!

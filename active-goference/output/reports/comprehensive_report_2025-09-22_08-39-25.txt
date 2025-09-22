@@ -1,0 +1,14 @@
+Active Goference Comprehensive Report
+=====================================
+Session: comprehensive_demo
+Generated: 2025-09-22 08:39:25
+
+--- Session Summary ---
+total_steps: 5
+final_belief: [3.0516646830846227e-05 0.9999694833531692]
+final_vfe: 1.1931964489082532
+final_efe: 0
+total_free_energy: 1.1931964489082532
+observations_collected: 5
+actions_taken: 5
+belief_evolution_steps: 5

@@ -1,0 +1,180 @@
+# Cursor Rules for Active Goference Project
+
+## 🎯 Core Principles
+
+### 1. **NO MOCK METHODS - REAL IMPLEMENTATIONS ONLY**
+- **NEVER** use mock methods, fake implementations, or stub functions
+- **ALWAYS** implement real, working methods that perform actual computations
+- **ALL** methods must handle real data and produce genuine results
+- **AVOID** any form of test doubles, mocks, fakes, or stubs in production code
+- **USE** real mathematical calculations, actual data processing, and genuine algorithmic implementations
+
+### 2. **Test-Driven Development (TDD) with Real Data**
+- **ALL** tests must use real data and real method implementations
+- **NO** mock objects, fake responses, or simulated data in tests
+- **USE** actual POMDP models, real belief states, genuine free energy calculations
+- **VALIDATE** mathematical correctness with real numerical computations
+- **TEST** edge cases with actual data scenarios, not fabricated responses
+
+### 3. **Mathematical Rigor and Real Analysis**
+- **IMPLEMENT** genuine variational free energy calculations
+- **USE** real probability distributions and entropy computations
+- **APPLY** actual Kalman filtering for Gaussian belief updates
+- **COMPUTE** real KL divergences and expected free energies
+- **VALIDATE** all mathematical formulas with actual numerical implementations
+
+## 🔧 Implementation Guidelines
+
+### **Required Implementation Patterns:**
+
+1. **Real POMDP Operations**
+   - Actual state transitions with real probability calculations
+   - Genuine observation probability computations
+   - Real reward calculations based on actual state-action pairs
+   - Proper belief state normalization with real arithmetic
+
+2. **Genuine Belief Management**
+   - Real categorical belief updates with actual likelihood calculations
+   - Actual Gaussian belief updates using Kalman filter equations
+   - Genuine Dirichlet belief updates with real concentration parameters
+   - Proper entropy calculations using real probability distributions
+
+3. **Authentic Inference Engine**
+   - Real variational free energy minimization
+   - Actual expected free energy calculations
+   - Genuine message passing algorithms on factor graphs
+   - Proper natural gradient descent implementations
+
+4. **Real Policy Planning**
+   - Actual multi-step policy planning with real horizon calculations
+   - Genuine softmax action selection with real temperature parameters
+   - Real hierarchical planning implementations
+   - Authentic policy evaluation using actual free energy computations
+
+## 🚫 **Prohibited Patterns**
+
+### **NEVER USE:**
+- `mock.Anything`, `mock.MatchedBy`, or any mock library functions
+- Fake data generators or synthetic data creators
+- Stub implementations that return predetermined responses
+- Test doubles or any form of method substitution
+- Simulated environments or fake system interactions
+- Any form of dependency injection that replaces real methods
+
+### **ALWAYS IMPLEMENT:**
+- Real mathematical functions with actual computations
+- Genuine data processing and analysis
+- Authentic algorithmic implementations
+- Proper error handling with real validation
+- Actual file I/O operations when needed
+- Real network communications when applicable
+- Genuine database interactions when required
+
+## 🧪 **Testing Requirements**
+
+### **Test Implementation Rules:**
+
+1. **Real Data Testing**
+   - Tests must use actual POMDP instances with real state spaces
+   - Belief tests must use genuine probability distributions
+   - Inference tests must compute real free energy values
+   - Planning tests must evaluate actual policy performance
+
+2. **Mathematical Validation**
+   - All tests must validate mathematical correctness
+   - Free energy calculations must be numerically verified
+   - Probability distributions must sum to 1.0 (within floating-point precision)
+   - Entropy calculations must be positive and properly scaled
+
+3. **Performance Testing**
+   - Benchmark tests must measure real method performance
+   - Memory allocation tests must use actual object creation
+   - Scalability tests must use real large state spaces
+   - Timing tests must measure genuine computational complexity
+
+## 📊 **Code Quality Standards**
+
+### **Required Code Patterns:**
+
+1. **Real Method Signatures**
+   ```go
+   // ✅ GOOD - Real implementation
+   func (p *POMDP) AddTransition(fromState, action, toState string, prob float64) error {
+       // Real implementation with actual probability calculations
+   }
+
+   // ❌ BAD - Mock would be prohibited
+   // func MockAddTransition() // Never implement this
+   ```
+
+2. **Genuine Data Structures**
+   ```go
+   // ✅ GOOD - Real data structures
+   type Belief []float64  // Real probability distribution
+
+   // ❌ BAD - Fake structures would be prohibited
+   // type FakeBelief struct{} // Never implement this
+   ```
+
+3. **Actual Algorithm Implementations**
+   ```go
+   // ✅ GOOD - Real algorithm implementation
+   func (ie *InferenceEngineImpl) ComputeVariationalFreeEnergy(pomdp *POMDP, belief Belief, policy Policy) float64 {
+       // Real KL divergence calculation
+       kl := ie.computeKLDivergence(belief, ie.getPrior(pomdp))
+       // Real expected log likelihood computation
+       expectedLL := ie.computeExpectedLogLikelihood(pomdp, belief, policy)
+       return kl - expectedLL  // Actual mathematical formula
+   }
+   ```
+
+## 🎯 **Enforcement Guidelines**
+
+### **Code Review Checklist:**
+
+1. **✅ Verify Real Implementations**
+   - [ ] All methods have actual implementation bodies
+   - [ ] No TODO comments indicating missing real logic
+   - [ ] All mathematical formulas are implemented with real calculations
+
+2. **✅ Confirm No Mocks**
+   - [ ] No mock library imports (e.g., testify/mock, gomock)
+   - [ ] No fake data generators or synthetic data creation
+   - [ ] No stub methods that return predetermined responses
+
+3. **✅ Validate Real Data Usage**
+   - [ ] Tests use actual POMDP models, not fabricated data
+   - [ ] Belief states contain real probability distributions
+   - [ ] Free energy calculations use genuine numerical computations
+
+4. **✅ Ensure Mathematical Correctness**
+   - [ ] All probability calculations sum to 1.0
+   - [ ] Free energy values are computed using real formulas
+   - [ ] Entropy calculations follow information theory principles
+
+## 🚨 **Violation Consequences**
+
+### **Immediate Actions for Mock Usage:**
+- **REJECT** any code containing mock methods
+- **REQUIRE** replacement with real implementations
+- **DEMAND** mathematical validation of all calculations
+- **INSIST** on genuine data processing and analysis
+
+### **Corrective Measures:**
+- Replace any mock implementations with real algorithms
+- Implement actual mathematical formulas and computations
+- Use genuine data structures and real probability calculations
+- Ensure all methods perform authentic operations
+
+## 📈 **Performance and Quality Metrics**
+
+### **Required Metrics:**
+- **100% Real Implementation Coverage**: All methods must have genuine logic
+- **Mathematical Correctness**: All formulas must be numerically validated
+- **No Mock Dependencies**: Zero mock libraries or fake implementations
+- **Real Data Testing**: All tests use actual data scenarios
+- **Genuine Performance**: Benchmarks measure real computational complexity
+
+---
+
+**REMINDER**: This project demands the highest standards of mathematical rigor and genuine implementation. Every method must perform real work, every calculation must be mathematically sound, and every test must validate actual functionality. No shortcuts, no mocks, no fakes - only real, working, mathematically correct implementations.

@@ -1,0 +1,5 @@
+Policy:
+=======
+Belief 0.450,0.550 -> Action: explore
+Belief 0.000,1.000 -> Action: explore
+Belief 0.300,0.700 -> Action: explore

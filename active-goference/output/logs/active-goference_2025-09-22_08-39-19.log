@@ -1,0 +1,113 @@
+INFO: 2025/09/22 08:39:19 logger.go:81: 🎯 Running Basic Active Inference Example
+INFO: 2025/09/22 08:39:19 logger.go:81: This demonstrates fundamental active inference principles
+INFO: 2025/09/22 08:39:19 logger.go:81: Initial belief state:
+INFO: 2025/09/22 08:39:19 logger.go:81: Belief State:
+=============
+safe           : 0.5000 ██████████████████████████████████████████████████
+dangerous      : 0.5000 ██████████████████████████████████████████████████
+
+INFO: 2025/09/22 08:39:19 logger.go:81: Running basic active inference simulation...
+INFO: 2025/09/22 08:39:19 logger.go:81: Step 1:
+INFO: 2025/09/22 08:39:19 logger.go:81: Basic step 1 completed in 15.541µs
+INFO: 2025/09/22 08:39:19 logger.go:81: Observation: uncomfortable
+INFO: 2025/09/22 08:39:19 logger.go:81: Action: explore
+INFO: 2025/09/22 08:39:19 logger.go:81: New belief:
+INFO: 2025/09/22 08:39:19 logger.go:81: Belief State:
+=============
+safe           : 0.1111 ██████
+dangerous      : 0.8889 ██████████████████████████████████████████████████
+
+INFO: 2025/09/22 08:39:19 logger.go:81: Active Inference Free Energy Analysis:
+=====================================
+Variational Free Energy (VFE): 0.825238
+  - Used for belief updating from observations
+Expected Free Energy (EFE): 0.000000
+  - Used for policy planning and decision making
+Note: VFE and EFE serve different purposes in active inference
+      They are not summed as they represent different processes
+
+INFO: 2025/09/22 08:39:19 logger.go:81: Step 2:
+INFO: 2025/09/22 08:39:19 logger.go:81: Basic step 2 completed in 9.667µs
+INFO: 2025/09/22 08:39:19 logger.go:81: Observation: uncomfortable
+INFO: 2025/09/22 08:39:19 logger.go:81: Action: explore
+INFO: 2025/09/22 08:39:19 logger.go:81: New belief:
+INFO: 2025/09/22 08:39:19 logger.go:81: Belief State:
+=============
+safe           : 0.0154 
+dangerous      : 0.9846 ██████████████████████████████████████████████████
+
+INFO: 2025/09/22 08:39:19 logger.go:81: Active Inference Free Energy Analysis:
+=====================================
+Variational Free Energy (VFE): 1.111365
+  - Used for belief updating from observations
+Expected Free Energy (EFE): 0.000000
+  - Used for policy planning and decision making
+Note: VFE and EFE serve different purposes in active inference
+      They are not summed as they represent different processes
+
+INFO: 2025/09/22 08:39:19 logger.go:81: Step 3:
+INFO: 2025/09/22 08:39:19 logger.go:81: Basic step 3 completed in 9.833µs
+INFO: 2025/09/22 08:39:19 logger.go:81: Observation: uncomfortable
+INFO: 2025/09/22 08:39:19 logger.go:81: Action: explore
+INFO: 2025/09/22 08:39:19 logger.go:81: New belief:
+INFO: 2025/09/22 08:39:19 logger.go:81: Belief State:
+=============
+safe           : 0.0019 
+dangerous      : 0.9981 ██████████████████████████████████████████████████
+
+INFO: 2025/09/22 08:39:19 logger.go:81: Active Inference Free Energy Analysis:
+=====================================
+Variational Free Energy (VFE): 1.179096
+  - Used for belief updating from observations
+Expected Free Energy (EFE): 0.000000
+  - Used for policy planning and decision making
+Note: VFE and EFE serve different purposes in active inference
+      They are not summed as they represent different processes
+
+INFO: 2025/09/22 08:39:19 logger.go:81: Step 4:
+INFO: 2025/09/22 08:39:19 logger.go:81: Basic step 4 completed in 11.959µs
+INFO: 2025/09/22 08:39:19 logger.go:81: Observation: uncomfortable
+INFO: 2025/09/22 08:39:19 logger.go:81: Action: explore
+INFO: 2025/09/22 08:39:19 logger.go:81: New belief:
+INFO: 2025/09/22 08:39:19 logger.go:81: Belief State:
+=============
+safe           : 0.0002 
+dangerous      : 0.9998 ██████████████████████████████████████████████████
+
+INFO: 2025/09/22 08:39:19 logger.go:81: Active Inference Free Energy Analysis:
+=====================================
+Variational Free Energy (VFE): 1.191232
+  - Used for belief updating from observations
+Expected Free Energy (EFE): 0.000000
+  - Used for policy planning and decision making
+Note: VFE and EFE serve different purposes in active inference
+      They are not summed as they represent different processes
+
+INFO: 2025/09/22 08:39:19 logger.go:81: Step 5:
+INFO: 2025/09/22 08:39:19 logger.go:81: Basic step 5 completed in 9.625µs
+INFO: 2025/09/22 08:39:19 logger.go:81: Observation: uncomfortable
+INFO: 2025/09/22 08:39:19 logger.go:81: Action: explore
+INFO: 2025/09/22 08:39:19 logger.go:81: New belief:
+INFO: 2025/09/22 08:39:19 logger.go:81: Belief State:
+=============
+safe           : 0.0000 
+dangerous      : 1.0000 ██████████████████████████████████████████████████
+
+INFO: 2025/09/22 08:39:19 logger.go:81: Active Inference Free Energy Analysis:
+=====================================
+Variational Free Energy (VFE): 1.193196
+  - Used for belief updating from observations
+Expected Free Energy (EFE): 0.000000
+  - Used for policy planning and decision making
+Note: VFE and EFE serve different purposes in active inference
+      They are not summed as they represent different processes
+
+INFO: 2025/09/22 08:39:19 logger.go:81: 📊 Generating simple PNG visualizations...
+INFO: 2025/09/22 08:39:19 logger.go:81: ✅ VFE curve PNG generated
+INFO: 2025/09/22 08:39:19 logger.go:81: ✅ EFE curve PNG generated
+INFO: 2025/09/22 08:39:19 logger.go:81: ✅ Belief evolution PNG generated
+INFO: 2025/09/22 08:39:19 logger.go:81: ✅ Multi-panel dashboard PNG generated
+INFO: 2025/09/22 08:39:19 logger.go:81: ✅ Basic example completed successfully!
+INFO: 2025/09/22 08:39:19 logger.go:81: 📁 Check output directories for detailed results:
+INFO: 2025/09/22 08:39:19 logger.go:81:    📊 Text outputs: output/{logs,traces,visualizations,reports}/
+INFO: 2025/09/22 08:39:19 logger.go:81:    🖼️  PNG visualizations: output/png_visualizations/

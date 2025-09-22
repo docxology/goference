@@ -1,0 +1,6 @@
+POMDP Overview (Active Inference):
+==================================
+States: [safe dangerous]
+Actions: [explore stay]
+Observations: [comfortable uncomfortable]
+Note: Active inference doesn't use discount factors

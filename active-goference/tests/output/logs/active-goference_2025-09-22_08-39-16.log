@@ -1,0 +1,4 @@
+INFO: 2025/09/22 08:39:16 logger.go:81: Test info message
+ERROR: 2025/09/22 08:39:16 logger.go:87: Test error message
+DEBUG: 2025/09/22 08:39:16 logger.go:97: Test debug message
+WARN: 2025/09/22 08:39:16 logger.go:107: Test warning message

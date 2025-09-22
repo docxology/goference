@@ -1,0 +1,5 @@
+TIMING: 2025/09/22 08:39:19 logger.go:121: Basic step 1 completed in 15.541µs
+TIMING: 2025/09/22 08:39:19 logger.go:121: Basic step 2 completed in 9.667µs
+TIMING: 2025/09/22 08:39:19 logger.go:121: Basic step 3 completed in 9.833µs
+TIMING: 2025/09/22 08:39:19 logger.go:121: Basic step 4 completed in 11.959µs
+TIMING: 2025/09/22 08:39:19 logger.go:121: Basic step 5 completed in 9.625µs

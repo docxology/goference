@@ -1,0 +1,39 @@
+=== Active Inference Step 3 ===
+Timestamp: 2025-09-22 08:39:25
+
+--- POMDP Configuration ---
+POMDP Overview (Active Inference):
+==================================
+States: [safe dangerous]
+Actions: [explore stay]
+Observations: [comfortable uncomfortable]
+Note: Active inference doesn't use discount factors
+
+--- Current Belief ---
+Belief State:
+=============
+safe           : 0.0019 
+dangerous      : 0.9981 ██████████████████████████████████████████████████
+
+--- Policy ---
+Policy:
+=======
+Belief 0.002,0.998 -> Action: explore
+Belief 0.301,0.699 -> Action: explore
+Belief 0.450,0.550 -> Action: explore
+
+--- Free Energy Analysis ---
+Active Inference Free Energy Analysis:
+=====================================
+Variational Free Energy (VFE): 1.179096
+  - Used for belief updating from observations
+Expected Free Energy (EFE): 0.000000
+  - Used for policy planning and decision making
+Note: VFE and EFE serve different purposes in active inference
+      They are not summed as they represent different processes
+
+--- Mathematical Details ---
+Belief Entropy: 0.020359
+Policy KL Divergence: 0.100000
+
+==========================
