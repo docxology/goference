@@ -191,7 +191,6 @@ func CreateDetailedTrace(pomdp *core.POMDP, belief core.Belief, policy core.Poli
 	sb.WriteString(VisualizeFreeEnergy(vfe, efe))
 	sb.WriteString("\n--- Mathematical Details ---\n")
 	sb.WriteString(fmt.Sprintf("Belief Entropy: %.6f\n", beliefEntropy(belief)))
-	sb.WriteString(fmt.Sprintf("Policy KL Divergence: %.6f\n", policyKLDivergence(policy, pomdp)))
 	sb.WriteString("\n==========================\n")
 
 	return sb.String()
@@ -216,11 +215,6 @@ func beliefEntropy(belief core.Belief) float64 {
 
 func log2(x float64) float64 {
 	return math.Log2(x)
-}
-
-func policyKLDivergence(policy core.Policy, pomdp *core.POMDP) float64 {
-	// Simplified KL divergence calculation for policy
-	return 0.1 // Placeholder - would be calculated based on actual policy
 }
 
 // CreateComprehensiveReport creates a comprehensive execution report

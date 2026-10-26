@@ -226,16 +226,14 @@ output/
 │   ├── active-goference_*.log     # Main application logs
 │   ├── debug_*.log               # Debug-level information
 │   ├── errors_*.log              # Error messages only
-│   ├── timing_*.log              # Performance timing data
-│   └── trace_*.log               # Detailed execution traces
+│   └── timing_*.log              # Performance timing data
 ├── visualizations/         # 📊 Text-based visualizations
 │   ├── belief_evolution_*.txt    # Belief state progression
 │   ├── policy_*.txt              # Policy visualizations
 │   ├── free_energy_*.txt         # Energy landscape
 │   └── final_belief_*.txt        # Terminal belief state
 ├── traces/                 # 🔍 Detailed execution traces
-│   ├── step_*.txt                # Per-step detailed analysis
-│   └── comprehensive_trace_*.txt # Full session trace
+│   └── step_*.txt                # Per-step detailed analysis
 ├── reports/                # 📋 Comprehensive reports
 │   └── comprehensive_report_*.txt # Session summary
 ├── charts/                 # 📈 Chart data (if PNG visualization enabled)
@@ -297,8 +295,8 @@ policy_planning: 28.9ms
 inference_computation: 8.7ms
 ```
 
-#### **Trace Logs** (`trace_*.log`)
-- Complete execution flow
+#### **Trace Output** (`debug_*.log`, `output/traces/`)
+- Complete execution flow (`Logger.Trace` writes into the debug log)
 - Function entry/exit points
 - Parameter values
 - Return values
@@ -313,20 +311,20 @@ inference_computation: 8.7ms
 
 ### **Built-in Timing Analysis**
 ```bash
-# Enable detailed timing logs
-go run cmd/main.go -example navigation -timing -session "performance_test"
+# Every run logs step timings via Logger.Timing
+go run cmd/main.go -example navigation -steps 20 -session "performance_test"
 
 # View timing results
-cat output/logs/timing_performance_test.log
+cat "$(ls -t output/logs/timing_*.log | head -1)"
 ```
 
 ### **Memory Usage Tracking**
 ```bash
-# Monitor memory allocation patterns
-go run cmd/main.go -example exploration -benchmark -session "memory_analysis"
+# Allocation measurements come from the benchmark suite
+go test ./tests/... -bench=. -benchmem
 
-# Analyze memory usage in reports
-grep "memory" output/reports/comprehensive_report_memory_analysis.txt
+# Session metrics are summarised in the newest report
+cat "$(ls -t output/reports/comprehensive_report_*.txt | head -1)"
 ```
 
 ### **Scalability Analysis**
@@ -507,7 +505,7 @@ cat "$(ls -t output/logs/debug_*.log | head -1)"
 cat "$(ls -t output/logs/timing_*.log | head -1)"
 
 # 6. Review comprehensive report
-cat "$(ls -t output/reports/comprehensive_report_debug_workflow_*.txt | head -1)"
+cat "$(ls -t output/reports/comprehensive_report_*.txt | head -1)"
 ```
 
 ## 🔗 **Integration Examples**
@@ -531,8 +529,9 @@ for scenario in "${scenarios[@]}"; do
       -steps $steps \
       -session "study_${scenario}_${steps}"
 
-    # Extract key metrics for analysis (report names carry a timestamp)
-    grep -h "final" output/reports/comprehensive_report_study_${scenario}_${steps}_*.txt >> results.txt
+    # Extract key metrics for analysis (report files are timestamped, and the
+    # newest one belongs to the run that just finished)
+    grep -h "final" "$(ls -t output/reports/comprehensive_report_*.txt | head -1)" >> results.txt
   done
 done
 

@@ -121,7 +121,6 @@ Each package provides genuine mathematical implementations with real numerical c
 - **[beliefToString](utils.md#helper-functions)** - Belief array to string conversion
 - **[beliefEntropy](utils.md#beliefentropy)** - Shannon entropy calculation for beliefs
 - **[log2](utils.md#log2)** - Base-2 logarithm for information theory
-- **[policyKLDivergence](utils.md#policykldivergence)** - Policy comparison using KL divergence
 
 ## 🔄 Integration Patterns
 

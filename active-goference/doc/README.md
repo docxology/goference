@@ -482,29 +482,31 @@ output/
 │   ├── debug_{timestamp}.log               # Debug information
 │   └── timing_{timestamp}.log              # Performance metrics
 ├── visualizations/          # 📊 State and policy visualizations
-│   ├── belief_step_{n}_{session}_{timestamp}.txt
-│   ├── policy_step_{n}_{session}_{timestamp}.txt
-│   ├── belief_evolution_{session}_{timestamp}.txt
-│   └── final_belief_{session}_{timestamp}.txt
-├── reports/                 # 📋 Session summaries
-│   └── comprehensive_report_{session}_{timestamp}.txt
+│   ├── belief_step_{n}_{timestamp}.txt
+│   ├── policy_step_{n}_{timestamp}.txt
+│   ├── belief_evolution_{timestamp}.txt
+│   └── final_belief_{timestamp}.txt
+├── reports/                 # 📋 Session summaries (session name inside the file)
+│   └── comprehensive_report_{timestamp}.txt
 ├── traces/                  # 🔍 Detailed execution traces
-│   └── step_{n}_{session}_{timestamp}.txt
+│   └── step_{n}_{timestamp}.txt
 ├── charts/                  # 📈 Performance charts
 └── benchmarks/             # ⚡ Performance measurements
 ```
 
 ### **File Naming Convention**
-**Format:** `{content}_{session}_{timestamp}.txt`
+**Format:** `{content}_{timestamp}.txt`
 
 **Components:**
 - **content**: Description of file contents (belief_evolution, comprehensive_report, etc.)
-- **session**: User-specified session identifier for grouping related runs
 - **timestamp**: ISO 8601 format (YYYY-MM-DD_HH-MM-SS) for uniqueness
 
+The `-session` value is recorded inside the log and report contents, not in
+output file names.
+
 **Examples:**
-- `belief_evolution_nav_demo_2024-01-15_14-30-22.txt`
-- `comprehensive_report_experiment_1_2024-01-15_14-32-15.txt`
+- `belief_evolution_2024-01-15_14-30-22.txt`
+- `comprehensive_report_2024-01-15_14-32-15.txt`
 
 ### **Log Files**
 #### **Main Log** (`active-goference_{timestamp}.log`)

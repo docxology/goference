@@ -253,12 +253,13 @@ Saves text content to an organized file structure.
 
 **File Path Construction:**
 ```
-output/{category}/{filename}_{session}_{timestamp}.txt
+output/{category}/{filename}_{timestamp}.txt
 ```
 
 **Implementation:**
 - Automatic timestamp generation
-- Session-aware naming (if session context available)
+- No session component in file names; callers pass the base name
+  (`SaveTextToFile(report, "comprehensive_report", "reports")`)
 - Proper file permissions and error handling
 - Organized directory structure maintenance
 
@@ -495,18 +496,6 @@ func log2(x float64) float64
 **Implementation**:
 - Real logarithmic computation with actual math.Log2
 - Proper mathematical function usage
-
-### policyKLDivergence
-
-Calculates real policy KL divergence:
-
-```go
-func policyKLDivergence(policy core.Policy, pomdp *core.POMDP) float64
-```
-
-**Implementation**:
-- Real KL divergence calculation with actual probability distributions
-- Genuine policy evaluation with real mathematical operations
 
 ## Implementation Guarantees
 

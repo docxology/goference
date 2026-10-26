@@ -303,13 +303,13 @@ output/
 │   ├── debug_{timestamp}.log
 │   └── timing_{timestamp}.log
 ├── visualizations/    # Real belief and policy representations
-│   ├── belief_step_{n}_{session}_{timestamp}.txt
-│   ├── final_policy_{session}_{timestamp}.txt
-│   └── belief_evolution_{session}_{timestamp}.txt
-├── reports/           # Comprehensive session summaries
-│   └── comprehensive_report_{session}_{timestamp}.txt
+│   ├── belief_step_{n}_{timestamp}.txt
+│   ├── final_policy_{timestamp}.txt
+│   └── belief_evolution_{timestamp}.txt
+├── reports/           # Comprehensive session summaries (session name inside)
+│   └── comprehensive_report_{timestamp}.txt
 ├── traces/            # Detailed execution traces
-│   └── step_{n}_{session}_{timestamp}.txt
+│   └── step_{n}_{timestamp}.txt
 └── benchmarks/        # Performance measurements
 ```
 
