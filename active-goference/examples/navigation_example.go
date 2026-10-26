@@ -1,3 +1,6 @@
+//go:build ignore
+
+// Standalone example: run with `go run examples/navigation_example.go`.
 package main
 
 import (

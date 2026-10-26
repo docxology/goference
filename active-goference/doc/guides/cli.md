@@ -1,6 +1,6 @@
 # 🖥️ Active Goference CLI Guide
 
-[![Go Version](https://img.shields.io/badge/go-%3E%3D1.24.6-blue.svg)](https://golang.org/)
+[![Go Version](https://img.shields.io/badge/go-%3E%3D1.26.0-blue.svg)](https://go.dev/)
 [![CLI](https://img.shields.io/badge/cli-complete-blue.svg)](../README.md)
 
 **Comprehensive command-line interface for running active inference simulations with genuine mathematical computations and organized output management.**
@@ -30,15 +30,11 @@ go run cmd/main.go -example exploration -steps 15 -session "explore_demo"
 go run cmd/main.go -example basic -steps 25 -session "basic_analysis"
 ```
 
-### **Custom Environment**
+### **Custom Run Length and Session**
 ```bash
-# Define your own POMDP environment
-go run cmd/main.go \
-  -states "home,office,park,cafe" \
-  -actions "walk,drive,bike,stay" \
-  -observations "clear,rainy,traffic,quiet" \
-  -steps 30 \
-  -session "custom_city"
+# The -example scenario defines the state/action/observation model, so custom
+# runs vary the step count and the output session instead of the model itself.
+go run cmd/main.go -example basic -steps 30 -session "custom_city"
 ```
 
 ## 📋 **Command Line Flags Reference**
@@ -48,9 +44,9 @@ go run cmd/main.go \
 #### **Environment Definition**
 | Flag | Type | Default | Description | Example |
 |------|------|---------|-------------|---------|
-| `-states` | string | `"s1,s2"` | Comma-separated list of POMDP states | `-states "home,office,park"` |
-| `-actions` | string | `"a1,a2"` | Comma-separated list of available actions | `-actions "walk,drive,stay"` |
-| `-observations` | string | `"o1,o2"` | Comma-separated list of possible observations | `-observations "clear,rainy,traffic"` |
+| `-states` | string | `"s1,s2"` | Comma-separated state labels; the `-example` scenario defines the model | `-states "s1,s2"` |
+| `-actions` | string | `"a1,a2"` | Comma-separated action labels; the `-example` scenario defines the model | `-actions "a1,a2"` |
+| `-observations` | string | `"o1,o2"` | Comma-separated observation labels; the `-example` scenario defines the model | `-observations "o1,o2"` |
 
 #### **Execution Control**
 | Flag | Type | Default | Description | Example |
@@ -59,34 +55,16 @@ go run cmd/main.go \
 | `-example` | string | `"basic"` | Pre-configured scenario to run | `-example navigation` |
 | `-session` | string | `"default"` | Unique session identifier for output organization | `-session "experiment_1"` |
 
-### **Advanced Configuration Flags**
+### **No Advanced Flags**
 
-#### **Planning Parameters**
-| Flag | Type | Default | Description | Use Case |
-|------|------|---------|-------------|----------|
-| `-horizon` | int | `3` | Planning horizon (steps ahead to look) | Strategic vs reactive planning |
-| `-temperature` | float | `1.0` | Softmax temperature for action selection | Exploration vs exploitation |
-| `-tolerance` | float | `1e-6` | Convergence tolerance for optimization | Precision vs speed trade-off |
+The CLI defines only the six flags above. Planning horizon, softmax temperature,
+convergence tolerance, iteration limits, output directory, and logging verbosity
+are set in code rather than on the command line:
 
-#### **Inference Parameters**
-| Flag | Type | Default | Description | Use Case |
-|------|------|---------|-------------|----------|
-| `-inference-tol` | float | `1e-6` | Free energy minimization tolerance | High precision inference |
-| `-max-iter` | int | `100` | Maximum iterations for optimization | Prevent infinite loops |
-
-### **Output Control Flags**
-| Flag | Type | Default | Description | Purpose |
-|------|------|---------|-------------|---------|
-| `-verbose` | bool | `false` | Enable detailed console output | Development debugging |
-| `-quiet` | bool | `false` | Suppress console output | Batch processing |
-| `-output-dir` | string | `"output"` | Base directory for all outputs | Custom output location |
-
-### **Development Flags**
-| Flag | Type | Default | Description | Use Case |
-|------|------|---------|-------------|----------|
-| `-debug` | bool | `false` | Enable debug logging and checks | Development troubleshooting |
-| `-profile` | bool | `false` | Enable performance profiling | Performance analysis |
-| `-validate` | bool | `false` | Run mathematical validation checks | Testing and verification |
+- `planning.NewPolicyPlanner(horizon, temperature, engine)` - planning horizon and softmax temperature
+- `inference.NewInferenceEngine(tolerance, maxIterations)` - inference tolerance and iteration cap
+- `utils.Log` - the shared logger (`Log.Debug`, `Log.Info`, `Log.Warn`, `Log.Error`)
+- `utils.Output` - the shared output manager that writes `output/{logs,visualizations,reports,traces}`
 
 ## 🎮 **Built-in Example Scenarios**
 
@@ -121,10 +99,10 @@ go run cmd/main.go -example navigation -steps 20 -session "nav_study"
 **Advanced Navigation Options:**
 ```bash
 # Long-term navigation planning
-go run cmd/main.go -example navigation -steps 50 -horizon 10 -temperature 0.5 -session "strategic_nav"
+go run cmd/main.go -example navigation -steps 50 -session "strategic_nav"
 
-# Exploratory navigation
-go run cmd/main.go -example navigation -steps 30 -temperature 2.0 -session "explore_nav"
+# Longer exploratory navigation
+go run cmd/main.go -example navigation -steps 30 -session "explore_nav"
 ```
 
 ### **Exploration Scenario**
@@ -141,122 +119,70 @@ go run cmd/main.go -example exploration -steps 25 -session "epistemic_study"
 - **Dynamics**: Discovery mechanics with information value
 - **Purpose**: Demonstrate information-seeking behavior
 
-**Exploration Parameters:**
+**Exploration Runs:**
 ```bash
-# High exploration incentive
-go run cmd/main.go -example exploration -steps 40 -temperature 3.0 -horizon 5 -session "high_explore"
+# Longer exploration run
+go run cmd/main.go -example exploration -steps 40 -session "long_explore"
 
-# Balanced exploration-exploitation
-go run cmd/main.go -example exploration -steps 35 -temperature 1.5 -horizon 8 -session "balanced_explore"
+# Shorter exploration run
+go run cmd/main.go -example exploration -steps 35 -session "short_explore"
 ```
+
+Exploration/exploitation balance is a code-level setting: the softmax
+temperature passed to `planning.NewPolicyPlanner(horizon, temperature, engine)`
+in `cmd/main.go` (default `5, 1.0`).
 
 ## 🔧 **Advanced Usage Patterns**
 
 ### **Custom POMDP Configuration**
 
-#### **Large-Scale Environments**
-```bash
-# Complex urban navigation scenario
-go run cmd/main.go \
-  -states "home,office,park,cafe,store,school,hospital,library" \
-  -actions "walk,bike,bus,car,taxi,stay" \
-  -observations "clear,rainy,sunny,cloudy,traffic,quiet,crowded" \
-  -steps 100 \
-  -horizon 5 \
-  -temperature 1.2 \
-  -session "urban_navigation_study"
-```
+#### **Larger Model Spaces (code level)**
 
-#### **Scientific Research Scenarios**
-```bash
-# Cognitive modeling experiment
-go run cmd/main.go \
-  -states "low_confidence,medium_confidence,high_confidence" \
-  -actions "gather_info,make_decision,postpone" \
-  -observations "supporting,contradicting,neutral,unclear" \
-  -steps 200 \
-  -horizon 3 \
-  -temperature 0.8 \
-  -inference-tol 1e-8 \
-  -session "cognitive_modeling_experiment"
-```
+Environments larger than the built-in 2-state scenarios are defined in Go, not
+on the command line: build the POMDP with `core.NewPOMDP(states, actions,
+observations)`, add transitions/observations/rewards, then hand it to
+`core.NewActiveInferenceAgent`. `cmd/main.go`'s `setupBasicPOMDP`,
+`setupNavigationPOMDP`, and `setupExplorationPOMDP` are the reference examples.
+Longer runs only need `-steps`:
 
-#### **Real-time Decision Making**
 ```bash
-# Low-latency financial trading simulation
-go run cmd/main.go \
-  -states "bull_market,bear_market,sideways_market" \
-  -actions "buy,sell,hold" \
-  -observations "positive_news,negative_news,neutral_news" \
-  -steps 1000 \
-  -horizon 1 \
-  -temperature 0.1 \
-  -quiet \
-  -session "trading_bot_simulation"
+# Long run of a built-in scenario
+go run cmd/main.go -example basic -steps 100 -session "long_run"
 ```
 
 ### **Performance Optimization**
 
-#### **High-Precision Computation**
-```bash
-# Maximum accuracy for research validation
-go run cmd/main.go \
-  -example navigation \
-  -steps 50 \
-  -inference-tol 1e-12 \
-  -max-iter 1000 \
-  -temperature 0.01 \
-  -validate \
-  -session "high_precision_research"
+#### **Precision vs. Speed (code level)**
+
+Inference precision is fixed in `cmd/main.go` when the engine and planner are
+constructed:
+
+```go
+// Maximum accuracy: tight tolerance, many iterations
+inferenceEngine := inference.NewInferenceEngine(1e-12, 1000)
+
+// Fast approximation: loose tolerance, few iterations
+inferenceEngine := inference.NewInferenceEngine(1e-3, 10)
 ```
 
-#### **Fast Approximation**
-```bash
-# Speed-optimized for rapid prototyping
-go run cmd/main.go \
-  -example basic \
-  -steps 100 \
-  -inference-tol 1e-3 \
-  -max-iter 10 \
-  -temperature 2.0 \
-  -quiet \
-  -session "fast_prototype"
-```
+The same file shows the defaults used by the CLI (`1e-6, 100` for inference and
+`planning.NewPolicyPlanner(5, 1.0, inferenceEngine)` for planning).
 
 ### **Batch Processing and Automation**
 
-#### **Parameter Sweep Studies**
+#### **Step-Count Sweep Study**
 ```bash
 #!/bin/bash
-# Temperature parameter sweep for exploration-exploitation analysis
-echo "Running temperature parameter sweep..."
-for temp in 0.1 0.5 1.0 2.0 5.0; do
-  echo "Running with temperature = $temp"
+# Run-length sweep for the exploration scenario
+echo "Running step-count sweep..."
+for steps in 10 25 50 100; do
+  echo "Running with steps = $steps"
   go run cmd/main.go \
     -example exploration \
-    -steps 50 \
-    -temperature $temp \
-    -session "temp_sweep_${temp}" \
-    -quiet
+    -steps $steps \
+    -session "steps_sweep_${steps}"
 done
-echo "Temperature sweep completed."
-```
-
-#### **Planning Horizon Analysis**
-```bash
-#!/bin/bash
-# Planning horizon impact study
-echo "Analyzing planning horizon effects..."
-for horizon in 1 2 3 5 8 13; do
-  echo "Testing horizon = $horizon"
-  go run cmd/main.go \
-    -example navigation \
-    -steps 30 \
-    -horizon $horizon \
-    -session "horizon_study_${horizon}" \
-    -quiet
-done
-echo "Horizon analysis completed."
+echo "Sweep completed."
 ```
 
 #### **Comparative Scenario Analysis**
@@ -270,35 +196,25 @@ for scenario in "${scenarios[@]}"; do
   go run cmd/main.go \
     -example $scenario \
     -steps 25 \
-    -session "comparison_${scenario}" \
-    -quiet
+    -session "comparison_${scenario}"
 done
 echo "Scenario comparison completed."
 ```
 
 #### **Scalability Testing**
-```bash
-#!/bin/bash
-# Test performance scaling with problem size
-echo "Testing scalability..."
-sizes=(5 10 15 20)
-for n in "${sizes[@]}"; do
-  # Generate states dynamically (simplified example)
-  states="s1"
-  for ((i=2; i<=n; i++)); do
-    states="${states},s${i}"
-  done
 
-  echo "Testing with $n states..."
-  go run cmd/main.go \
-    -states "$states" \
-    -actions "a1,a2" \
-    -observations "o1,o2" \
-    -steps 20 \
-    -session "scalability_${n}_states" \
-    -quiet
-done
-echo "Scalability testing completed."
+Problem size is compiled in, not passed on the command line: `-states`,
+`-actions`, and `-observations` do not resize the model. To measure scaling with
+larger state spaces, add a scenario builder in `cmd/main.go` (mirroring
+`setupBasicPOMDP`) and then use the existing benchmarks or a profile:
+
+```bash
+# Benchmarks in tests/core_bench_test.go
+go test ./tests/... -bench=. -benchmem
+
+# CPU profile of a run
+go run -cpuprofile=cpu.prof cmd/main.go -example basic -steps 50
+go tool pprof cpu.prof
 ```
 
 ## 📁 **Output Organization**
@@ -416,22 +332,19 @@ grep "memory" output/reports/comprehensive_report_memory_analysis.txt
 ### **Scalability Analysis**
 ```bash
 #!/bin/bash
-# Performance scaling study
-echo "Performance scaling analysis..."
-for states in 2 4 8 16 32; do
+# Run-length timing study
+echo "Run-length timing analysis..."
+for steps in 10 25 50 100; do
   start_time=$(date +%s%N)
 
   go run cmd/main.go \
-    -states "$(seq -s, 1 $states | sed 's/,/,s/g')" \
-    -actions "a1,a2" \
-    -observations "o1,o2" \
-    -steps 10 \
-    -quiet \
-    -session "scaling_${states}_states"
+    -example basic \
+    -steps $steps \
+    -session "timing_${steps}_steps"
 
   end_time=$(date +%s%N)
   duration=$(( ($end_time - $start_time) / 1000000 )) # Convert to milliseconds
-  echo "States: $states, Time: ${duration}ms"
+  echo "Steps: $steps, Time: ${duration}ms"
 done
 ```
 
@@ -459,20 +372,17 @@ Solution: Ensure write permissions for ./output/ directory
 
 ### **Debug Mode**
 ```bash
-# Enable debug logging for troubleshooting
-go run cmd/main.go -debug -session "debug_session"
+# Every run writes main, debug, error, and timing logs named by timestamp
+go run cmd/main.go -example basic -steps 5 -session "debug_session"
 
-# Check debug logs for detailed information
-tail -f output/logs/debug_debug_session.log
+# Follow the newest debug log for detailed information
+tail -f "$(ls -t output/logs/debug_*.log | head -1)"
 ```
 
 ### **Validation Mode**
 ```bash
-# Run with mathematical validation checks
-go run cmd/main.go -validate -session "validation_run"
-
-# Check for validation errors in logs
-grep "VALIDATION" output/logs/active-goference_validation_run.log
+# Mathematical validation lives in the test suite
+go test ./tests/... -v
 ```
 
 ## 🧪 **Development and Testing**
@@ -496,12 +406,9 @@ go test -tags=integration ./tests/
 
 ### **Development Mode**
 ```bash
-# Run with development configuration
-go run cmd/main.go \
-  -debug \
-  -validate \
-  -timing \
-  -session "development_run"
+# Development run: logs plus the full test suite
+go run cmd/main.go -example basic -steps 5 -session "development_run"
+go test ./tests/... -v
 ```
 
 ### **Continuous Integration**
@@ -520,8 +427,8 @@ go test ./... -coverprofile=coverage.out
 golangci-lint run
 
 # Run example scenarios
-go run cmd/main.go -example basic -steps 5 -quiet
-go run cmd/main.go -example navigation -steps 5 -quiet
+go run cmd/main.go -example basic -steps 5
+go run cmd/main.go -example navigation -steps 5
 
 echo "CI pipeline completed successfully"
 ```
@@ -554,22 +461,21 @@ echo "CI pipeline completed successfully"
 #### **High Memory Usage**
 **Symptoms**: Application consumes excessive RAM, slow performance
 **Solutions**:
-- Reduce planning horizon (`-horizon 2`)
-- Decrease maximum iterations (`-max-iter 50`)
-- Use larger convergence tolerance (`-inference-tol 1e-4`)
+- Reduce the planning horizon in `planning.NewPolicyPlanner(horizon, ...)`
+- Decrease the iteration cap in `inference.NewInferenceEngine(tol, maxIter)`
+- Use a larger convergence tolerance in `inference.NewInferenceEngine`
 
 #### **Slow Convergence**
 **Symptoms**: Long execution times, many iterations required
 **Solutions**:
-- Adjust temperature parameter (`-temperature 1.5`)
-- Reduce inference tolerance (`-inference-tol 1e-3`)
-- Use shorter planning horizon (`-horizon 3`)
+- Adjust the softmax temperature in `planning.NewPolicyPlanner`
+- Loosen the inference tolerance in `inference.NewInferenceEngine`
 
 #### **Incorrect Results**
 **Symptoms**: Unexpected behavior, non-convergent beliefs
 **Solutions**:
-- Enable validation (`-validate`)
-- Check debug logs (`-debug`)
+- Run the test suite (`go test ./tests/... -v`)
+- Check the debug logs in `output/logs/`
 - Verify POMDP configuration parameters
 - Validate probability distributions
 
@@ -582,29 +488,26 @@ echo "CI pipeline completed successfully"
 
 ### **Debugging Workflow**
 ```bash
-# 1. Enable all debugging features
+# 1. Run a short session; all four log streams are written every run
 go run cmd/main.go \
-  -debug \
-  -validate \
-  -timing \
   -example basic \
   -steps 3 \
   -session "debug_workflow"
 
 # 2. Check error logs first
-cat output/logs/errors_debug_workflow.log
+cat "$(ls -t output/logs/errors_*.log | head -1)"
 
 # 3. Review main logs for execution flow
-cat output/logs/active-goference_debug_workflow.log
+cat "$(ls -t output/logs/active-goference_*.log | head -1)"
 
 # 4. Examine debug logs for internal state
-cat output/logs/debug_debug_workflow.log
+cat "$(ls -t output/logs/debug_*.log | head -1)"
 
 # 5. Check timing for performance bottlenecks
-cat output/logs/timing_debug_workflow.log
+cat "$(ls -t output/logs/timing_*.log | head -1)"
 
 # 6. Review comprehensive report
-cat output/reports/comprehensive_report_debug_workflow.txt
+cat "$(ls -t output/reports/comprehensive_report_debug_workflow_*.txt | head -1)"
 ```
 
 ## 🔗 **Integration Examples**
@@ -616,23 +519,20 @@ cat output/reports/comprehensive_report_debug_workflow.txt
 echo "Starting research pipeline..."
 
 # Parameter combinations for study
-temperatures=(0.5 1.0 2.0)
-horizons=(1 3 5)
+scenarios=(basic navigation exploration)
+step_counts=(25 50)
 
-for temp in "${temperatures[@]}"; do
-  for horizon in "${horizons[@]}"; do
-    echo "Running T=$temp, H=$horizon"
+for scenario in "${scenarios[@]}"; do
+  for steps in "${step_counts[@]}"; do
+    echo "Running $scenario with $steps steps"
 
     go run cmd/main.go \
-      -example navigation \
-      -steps 50 \
-      -temperature $temp \
-      -horizon $horizon \
-      -quiet \
-      -session "study_T${temp}_H${horizon}"
+      -example $scenario \
+      -steps $steps \
+      -session "study_${scenario}_${steps}"
 
-    # Extract key metrics for analysis
-    grep "final_free_energy" output/reports/comprehensive_report_study_T${temp}_H${horizon}.txt >> results.txt
+    # Extract key metrics for analysis (report names carry a timestamp)
+    grep -h "final" output/reports/comprehensive_report_study_${scenario}_${steps}_*.txt >> results.txt
   done
 done
 
@@ -651,14 +551,13 @@ while true; do
   go run cmd/main.go \
     -example exploration \
     -steps 10 \
-    -validate \
-    -session "monitor_${timestamp}" \
-    -quiet
+    -session "monitor_${timestamp}"
 
-  # Check for errors
-  if [ -s "output/logs/errors_monitor_${timestamp}.log" ]; then
+  # Check the newest error log
+  error_log=$(ls -t output/logs/errors_*.log | head -1)
+  if [ -s "${error_log}" ]; then
     echo "ERROR detected at ${timestamp}"
-    cat output/logs/errors_monitor_${timestamp}.log
+    cat "${error_log}"
   fi
 
   # Brief pause between runs
@@ -669,7 +568,7 @@ done
 ### **Docker Integration**
 ```dockerfile
 # Dockerfile for goference CLI
-FROM golang:1.21-alpine AS builder
+FROM golang:1.26-alpine AS builder
 
 WORKDIR /app
 COPY go.mod go.sum ./

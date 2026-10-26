@@ -10,11 +10,11 @@ Comprehensive setup guide for real active inference development with genuine mat
 
 #### **Go Runtime Environment**
 ```bash
-# Required: Go 1.21+ (tested with 1.21.0+)
+# Required: Go 1.26.0+ (declared in active-goference/go.mod)
 go version
 
-# Recommended: Go 1.21.5+ for latest features and security patches
-# Output should show: go version go1.21.x darwin/amd64 (or your platform)
+# Recommended: Go 1.27.x for latest features and security patches
+# Output should show: go version go1.27.x darwin/arm64 (or your platform)
 ```
 
 #### **Operating System Support**
@@ -47,9 +47,7 @@ go version
 ### **Core Dependencies**
 
 #### **Mathematical Computing**
-- **`gonum.org/v1/gonum`** - High-performance numerical computing library
-- **`github.com/gonum/matrix`** - Advanced matrix operations
-- **`github.com/gonum/stat`** - Statistical computing functions
+- **`gonum.org/v1/gonum`** - High-performance numerical computing library (`stat/distuv` for sampling)
 
 #### **Visualization & Graphics**
 - **`github.com/fogleman/gg`** - 2D graphics and PNG generation
@@ -57,7 +55,7 @@ go version
 - **`github.com/ajstarks/svgo`** - SVG vector graphics (optional)
 
 #### **Development Tools**
-- **`github.com/cosmtrek/air`** - Live reloading for development
+- **`github.com/air-verse/air`** - Live reloading for development
 - **`github.com/golangci/golangci-lint`** - Advanced linting
 - **`github.com/kyoh86/richgo`** - Enhanced test output
 
@@ -65,9 +63,6 @@ go version
 ```bash
 # High-performance computing
 go get gonum.org/v1/gonum@latest
-
-# GPU acceleration (CUDA)
-go get github.com/kuchkin/go-cuda@latest
 
 # Advanced profiling
 go get github.com/google/pprof@latest
@@ -84,7 +79,7 @@ mkdir -p ~/goference-workspace
 cd ~/goference-workspace
 
 # Clone repository with submodules (if any)
-git clone https://github.com/yourusername/goference.git
+git clone https://github.com/docxology/goference.git
 cd goference/active-goference
 
 # Verify repository integrity
@@ -100,7 +95,7 @@ ls -la
 
 # Verify Go module
 cat go.mod
-# Should show: module active-goference, go 1.21
+# Should show: module active-goference, go 1.26.0
 
 # Check initial commit
 git log --oneline | head -1
@@ -130,7 +125,7 @@ go get github.com/wcharczuk/go-chart/v2@latest
 
 # Install development tools
 go install github.com/golangci/golangci-lint/cmd/golangci-lint@latest
-go install github.com/cosmtrek/air@latest
+go install github.com/air-verse/air@latest
 go install github.com/kyoh86/richgo@latest
 ```
 
@@ -164,7 +159,7 @@ go build -ldflags="-X main.version=$(git describe --tags)" -o goference cmd/main
 ./goference -help
 
 # Run basic example
-./goference -example basic -steps 5 -quiet
+./goference -example basic -steps 5
 
 # Check output directory creation
 ls -la output/
@@ -188,7 +183,7 @@ GOOS=darwin GOARCH=arm64 go build -o goference-macos-arm64 cmd/main.go
 #### **Dockerfile for Development**
 ```dockerfile
 # Dockerfile for active-goference development
-FROM golang:1.21-alpine AS builder
+FROM golang:1.26-alpine AS builder
 
 # Install system dependencies
 RUN apk add --no-cache git gcc musl-dev
@@ -237,7 +232,7 @@ docker run -it --rm \
   -v $(pwd):/app \
   -w /app \
   -p 8080:8080 \
-  golang:1.21-alpine \
+  golang:1.26-alpine \
   sh
 
 # Inside container
@@ -265,8 +260,8 @@ source ~/.zshrc
 #### **Linux Setup (Ubuntu/Debian)**
 ```bash
 # Install Go
-wget https://go.dev/dl/go1.21.5.linux-amd64.tar.gz
-sudo rm -rf /usr/local/go && sudo tar -C /usr/local -xzf go1.21.5.linux-amd64.tar.gz
+wget https://go.dev/dl/go1.26.0.linux-amd64.tar.gz
+sudo rm -rf /usr/local/go && sudo tar -C /usr/local -xzf go1.26.0.linux-amd64.tar.gz
 
 # Add to PATH
 export PATH=$PATH:/usr/local/go/bin
@@ -299,13 +294,13 @@ echo "🚀 Setting up Active Goference development environment..."
 
 # Check Go installation
 if ! command -v go &> /dev/null; then
-    echo "❌ Go is not installed. Please install Go 1.21+ first."
+    echo "❌ Go is not installed. Please install Go 1.26+ first."
     exit 1
 fi
 
 # Verify Go version
 GO_VERSION=$(go version | grep -o 'go[0-9]\+\.[0-9]\+' | sed 's/go//')
-REQUIRED_VERSION="1.21"
+REQUIRED_VERSION="1.26"
 
 if [ "$(printf '%s\n' "$REQUIRED_VERSION" "$GO_VERSION" | sort -V | head -n1)" != "$REQUIRED_VERSION" ]; then
     echo "❌ Go version $GO_VERSION is too old. Please upgrade to Go $REQUIRED_VERSION+"
@@ -317,7 +312,7 @@ echo "✅ Go $GO_VERSION detected"
 # Clone repository if not already done
 if [ ! -d "active-goference" ]; then
     echo "📥 Cloning repository..."
-    git clone https://github.com/yourusername/goference.git
+    git clone https://github.com/docxology/goference.git
     cd goference/active-goference
 else
     cd active-goference
@@ -331,7 +326,7 @@ go mod download
 # Install development tools
 echo "🔧 Installing development tools..."
 go install github.com/golangci/golangci-lint/cmd/golangci-lint@latest
-go install github.com/cosmtrek/air@latest
+go install github.com/air-verse/air@latest
 
 # Build and test
 echo "🏗️ Building application..."
@@ -505,7 +500,7 @@ pkg/belief
 #### **GoLand / IntelliJ IDEA**
 
 ##### **GoLand Configuration**
-- **Go SDK**: Configure Go 1.21+ SDK
+- **Go SDK**: Configure Go 1.26+ SDK
 - **Project Structure**: Mark `pkg/` as sources root
 - **Run Configurations**: Set up multiple run configurations for different examples
 - **Code Style**: Import Go coding standards
@@ -610,7 +605,7 @@ go install github.com/uudashr/gopkgs/v2/cmd/gopkgs@latest
 #### **Hot Reloading and Development**
 ```bash
 # Install Air for hot reloading
-go install github.com/cosmtrek/air@latest
+go install github.com/air-verse/air@latest
 
 # Create .air.toml configuration
 cat > .air.toml << EOF
@@ -791,7 +786,7 @@ dev:
 # Install development dependencies
 setup-dev:
 	go install github.com/golangci/golangci-lint/cmd/golangci-lint@latest
-	go install github.com/cosmtrek/air@latest
+	go install github.com/air-verse/air@latest
 	go install github.com/kyoh86/richgo@latest
 	go install github.com/princjef/gomarkdoc/cmd/gomarkdoc@latest
 
@@ -853,18 +848,18 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        go-version: [1.21.x, 1.22.x]
+        go-version: [1.26.x, 1.27.x]
 
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v7
 
     - name: Set up Go
-      uses: actions/setup-go@v4
+      uses: actions/setup-go@v7
       with:
         go-version: ${{ matrix.go-version }}
 
     - name: Cache dependencies
-      uses: actions/cache@v3
+      uses: actions/cache@v6
       with:
         path: ~/go/pkg/mod
         key: ${{ runner.os }}-go-${{ hashFiles('**/go.sum') }}
@@ -878,22 +873,22 @@ jobs:
       run: go test ./... -v -race -coverprofile=coverage.out
 
     - name: Upload coverage to Codecov
-      uses: codecov/codecov-action@v3
+      uses: codecov/codecov-action@v7
       with:
-        file: ./coverage.out
+        files: ./coverage.out
 
   lint:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v7
 
     - name: Set up Go
-      uses: actions/setup-go@v4
+      uses: actions/setup-go@v7
       with:
-        go-version: 1.21.x
+        go-version: 1.26.x
 
     - name: golangci-lint
-      uses: golangci/golangci-lint-action@v3
+      uses: golangci/golangci-lint-action@v9
       with:
         version: latest
         args: --timeout=5m
@@ -1022,8 +1017,8 @@ goimports -w .
 Real code quality checking with actual linting tools:
 
 ```bash
-# Golint (deprecated, but useful)
-golint ./pkg/...
+# Static analysis (golint is archived; staticcheck replaces it)
+staticcheck ./pkg/...
 
 # Go vet for suspicious constructs
 go vet ./...
@@ -1224,14 +1219,11 @@ go mod tidy
 Real debugging with actual detailed output:
 
 ```bash
-# Enable debug logging
-export DEBUG=1
+# Debug logs are always written; run a short session first
+go run cmd/main.go -example basic -steps 5 -session "debug_session"
 
-# Run with debug output
-go run cmd/main.go -debug
-
-# Check debug logs
-tail -f output/logs/debug_*.log
+# Check debug logs (timestamped per run)
+tail -f "$(ls -t output/logs/debug_*.log | head -1)"
 ```
 
 ## Contributing

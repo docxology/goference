@@ -1,4 +1,4 @@
-# Manuscript status — gofence
+# Manuscript status — goference
 
 - Repo type: Go implementation of Active Inference agents (early-stage library).
 - Publication target: none today — library/framework, no publication-track research artifact.

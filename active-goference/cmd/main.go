@@ -15,9 +15,11 @@ import (
 
 func main() {
 	// Command-line flags
-	states := flag.String("states", "s1,s2", "Comma-separated list of states")
-	actions := flag.String("actions", "a1,a2", "Comma-separated list of actions")
-	observations := flag.String("observations", "o1,o2", "Comma-separated list of observations")
+	// The -example scenarios define the actual state/action/observation model,
+	// so these three flags only label the spaces and keep the defaults.
+	states := flag.String("states", "s1,s2", "Comma-separated list of state labels (the -example scenario defines the model)")
+	actions := flag.String("actions", "a1,a2", "Comma-separated list of action labels (the -example scenario defines the model)")
+	observations := flag.String("observations", "o1,o2", "Comma-separated list of observation labels (the -example scenario defines the model)")
 	// Note: Active inference doesn't use discount factors
 	steps := flag.Int("steps", 10, "Number of simulation steps")
 	example := flag.String("example", "basic", "Example scenario to run (basic, navigation, exploration)")

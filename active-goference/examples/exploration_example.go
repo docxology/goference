@@ -1,8 +1,11 @@
+//go:build ignore
+
+// Standalone example: run with `go run examples/exploration_example.go`.
 package main
 
 import (
 	"fmt"
-	"math/rand"
+	"math/rand/v2"
 	"time"
 
 	"active-goference/pkg/belief"
@@ -219,7 +222,6 @@ func simulateExplorationObservation(pomdp *core.POMDP, belief core.Belief) strin
 	currentState := pomdp.States[maxIdx]
 
 	// Add some randomness to observations to simulate real-world uncertainty
-	rand.Seed(time.Now().UnixNano() + int64(maxIdx))
 	randomness := rand.Float64()
 
 	switch currentState {

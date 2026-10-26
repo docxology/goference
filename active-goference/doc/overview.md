@@ -387,12 +387,8 @@ go run cmd/main.go -example basic -steps 10 -session "demo_run"
 Genuine parameter specification with real validation:
 
 ```bash
-go run cmd/main.go \
-  -states "home,office,park" \
-  -actions "walk,drive,stay" \
-  -observations "clear,rainy,traffic" \
-  -steps 25 \
-  -session "custom_scenario"
+# The -example scenario defines the model; -steps and -session vary the run
+go run cmd/main.go -example navigation -steps 25 -session "custom_scenario"
 ```
 
 ### Output Management

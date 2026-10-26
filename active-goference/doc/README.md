@@ -1,8 +1,8 @@
 # Active Goference
 
-[![Go Version](https://img.shields.io/badge/go-%3E%3D1.24.6-blue.svg)](https://golang.org/)
+[![Go Version](https://img.shields.io/badge/go-%3E%3D1.26.0-blue.svg)](https://go.dev/)
 [![Documentation](https://img.shields.io/badge/docs-complete-blue.svg)](api/)
-[![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
+![License](https://img.shields.io/badge/license-MIT-green.svg)
 
 **Real-time Active Inference implementation in Go using genuine mathematical computations and probabilistic reasoning.**
 
@@ -289,7 +289,7 @@ Model parameter updates to minimize long-term free energy:
 #### **Basic Active Inference Run**
 ```bash
 # Simple 2-state, 2-action, 2-observation scenario
-go run cmd/main.go -states "home,office" -actions "stay,move" -observations "clear,noisy" -steps 10
+go run cmd/main.go -example basic -steps 10
 ```
 
 #### **Built-in Scenarios**
@@ -634,7 +634,7 @@ Active Goference follows strict mathematical rigor with **zero mock implementati
 ## 📦 **Dependencies**
 
 ### **Core Dependencies**
-- **Go 1.24.6+**: Modern Go with generics, improved performance, and standard library enhancements
+- **Go 1.26.0+**: Modern Go with generics, improved performance, and standard library enhancements
 - **gonum.org/v1/gonum**: High-performance numerical computing library for matrix operations and statistical functions
 
 ### **Standard Library Usage**

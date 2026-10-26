@@ -1,4 +1,4 @@
-# AGENTS.md — docs/ for gofence
+# AGENTS.md — docs/ for goference
 
 Layout, key modules, and conventions are documented in README.md (repo root)
 and in this docs/ tree. Maintain: update these two files when repo layout or

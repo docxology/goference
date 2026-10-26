@@ -1,7 +1,7 @@
 # Active Goference
 
-[![Go Version](https://img.shields.io/badge/go-%3E%3D1.24.6-blue.svg)](https://golang.org/)
-[![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
+[![Go Version](https://img.shields.io/badge/go-%3E%3D1.26.0-blue.svg)](https://go.dev/)
+![License](https://img.shields.io/badge/license-MIT-green.svg)
 [![Documentation](https://img.shields.io/badge/docs-complete-blue.svg)](active-goference/doc/)
 
 Real-time Active Inference implementation in Go using genuine mathematical computations and probabilistic reasoning. A production-ready framework for autonomous agents performing variational inference and policy selection through free energy minimization.
@@ -10,7 +10,7 @@ Real-time Active Inference implementation in Go using genuine mathematical compu
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/goference.git
+git clone https://github.com/docxology/goference.git
 cd goference/active-goference
 
 # Run basic example
@@ -19,12 +19,8 @@ go run cmd/main.go -example basic -steps 10
 # Run navigation scenario
 go run cmd/main.go -example navigation -steps 20 -session "nav_demo"
 
-# Custom configuration
-go run cmd/main.go \
-  -states "home,office,park" \
-  -actions "walk,drive,stay" \
-  -observations "clear,rainy,traffic" \
-  -steps 25
+# Exploration scenario with a named session
+go run cmd/main.go -example exploration -steps 25 -session "explore_demo"
 ```
 
 ## 📖 Documentation
@@ -72,7 +68,6 @@ active-goference/
 │       ├── logger.go
 │       ├── visualization.go
 │       ├── chart_visualization.go
-│       ├── simple_png_visualization.go
 │       └── simple_png_visualization.go
 ├── cmd/
 │   └── main.go         # CLI application entry point
@@ -174,7 +169,7 @@ dirichletBelief.Update(observations)
 
 ## 🔧 Dependencies
 
-- **Go 1.24.6+**: Modern Go with generics and improved performance
+- **Go 1.26.0+**: Modern Go with generics and improved performance
 - **gonum.org/v1/gonum**: Real numerical computing library
 - **Standard Library**: math, log, time, os, and other core packages
 
@@ -233,7 +228,7 @@ output/
 
 ## 📜 License
 
-MIT License - see [LICENSE](LICENSE) file for details.
+MIT License.
 
 ## 🔬 Research & Applications
 

@@ -2,7 +2,7 @@ package planning
 
 import (
 	"math"
-	"math/rand"
+	"math/rand/v2"
 
 	"active-goference/pkg/core"
 	"active-goference/pkg/inference"

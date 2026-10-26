@@ -1,4 +1,4 @@
-# docs/ — gofence
+# docs/ — goference
 
 Active Goference — Active Inference agent framework in Go.
 
@@ -9,5 +9,5 @@ Active Goference — Active Inference agent framework in Go.
 
 ## Verify (real commands from repo metadata)
 
-- `go test ./...` (requires Go >= 1.24.6)
+- `cd active-goference && go build ./... && go test ./...` (requires Go >= 1.26.0)
 
