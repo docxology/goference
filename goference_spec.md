@@ -33,8 +33,7 @@ The package implements the core mathematical framework of active inference:[^11]
 
 ```
 active-goference/
-├── pkg/core/           # Core active inference algorithms
-├── pkg/models/         # Generative model implementations
+├── pkg/core/           # Core active inference algorithms and generative models
 ├── pkg/belief/         # Belief state management
 ├── pkg/inference/      # VFE and EFE calculations
 ├── pkg/planning/       # Policy planning and selection
