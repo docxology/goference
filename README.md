@@ -250,3 +250,7 @@ Active Goference supports various research and application domains:
 ---
 
 **Active Goference**: Where genuine mathematical computation meets real-world active inference. 🚀
+
+## License
+
+Released under the [MIT License](LICENSE).
