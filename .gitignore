@@ -1,0 +1,16 @@
+# Go build output and test artifacts
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+*.test
+*.out
+coverage.*
+go.work.sum
+
+# OS and editor files
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
