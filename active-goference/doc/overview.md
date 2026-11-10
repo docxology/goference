@@ -501,7 +501,7 @@ Active Goference delivers genuine active inference through:
 
 Ready to explore active inference? Start with:
 
-1. **[Setup Guide](setup.md)**: Environment configuration and installation
+1. **[Setup Guide](guides/setup.md)**: Environment configuration and installation
 2. **[CLI Guide](guides/cli.md)**: Command-line usage and examples
 3. **[API Documentation](api/)**: Package interfaces and implementations
 4. **[Mathematical Foundations](math/foundations.md)**: Theoretical background
