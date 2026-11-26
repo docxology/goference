@@ -1,13 +1,8 @@
-# docs/ — goference
+# Goference documentation
 
-Active Goference — Active Inference agent framework in Go.
-
-## Repository layout
-
-- active-goference/ — Go package sources
-- goference_spec.md — design specification
-
-## Verify (real commands from repo metadata)
-
-- `cd active-goference && go build ./... && go test ./...` (requires Go >= 1.26.0)
-
+- [Development setup](guides/setup.md) and [CLI guide](guides/cli.md)
+- [Architecture and limitations](overview.md)
+- [API index](api/index.md) and [mathematical foundations](math/foundations.md)
+- [Simulated examples and outputs](examples/README.md)
+- [Implementation note](manuscript/README.md) and [pinned rendering](guides/rendering.md)
+- [Open work](TODO.md) and [historical design proposal](archive/README.md)

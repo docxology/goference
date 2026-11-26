@@ -1,0 +1,12 @@
+{
+  "schema_version": "2.0",
+  "figures": [
+    {
+      "label": "fig:basic-belief",
+      "filename": "basic_belief_evolution.png",
+      "caption": "Belief evolution in the archived standalone basic example.",
+      "alt_text": "Line plot of the archived basic demo. Belief in the model state labeled dangerous rises toward one, while belief in safe falls toward zero.",
+      "source_markdown": "03_example.md"
+    }
+  ]
+}
