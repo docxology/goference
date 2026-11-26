@@ -1,0 +1,30 @@
+paper:
+  title: "Active Goference"
+  subtitle: "An Implementation Note on Discrete Belief Updates and Policy Scoring in Go"
+  description: "A technical note on the Goference model, simulated examples, and limits of the current implementation."
+
+authors:
+  - name: "Daniel Ari Friedman"
+    orcid: "0000-0001-6232-9096"
+
+publication:
+  github_repository: "docxology/goference"
+  repository_url: "https://github.com/docxology/goference"
+
+keywords:
+  - active inference
+  - belief updating
+  - partially observable Markov decision processes
+  - Go
+
+metadata:
+  language: en-US
+  license: MIT
+
+render:
+  formats:
+    pdf: true
+    html: true
+    epub: false
+    slides: false
+    docx: false

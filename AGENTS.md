@@ -19,9 +19,10 @@ goference/
     ├── pkg/{belief,core,inference,planning,utils}
     ├── tests/
     ├── examples/
-    ├── doc/
     └── output/
 ```
+
+Current guides and the canonical implementation note live in [docs](docs/README.md).
 
 ## Running
 
@@ -33,7 +34,8 @@ go run cmd/main.go -example navigation -steps 20 -session nav_demo
 go run cmd/main.go -example exploration -steps 25 -session explore_demo
 ```
 
-`-session` names a run and keeps its output separable under `output/`.
+`-session` names the summary report. Use separate working directories to
+isolate runs.
 
 ## Tests
 
@@ -70,12 +72,11 @@ concern inside `cmd/main.go`.
   Changing a default changes every reported result — say which one moved.
 - `output/` and `active-goference.log` are run artifacts. Regenerate rather than
   hand-edit them.
-- There is no packaging step: this is a module consumed by `go get` or run from
-  source, not a released binary.
+- Build and run the module from source.
 
 ## Verification
 
-Run `go build ./...` and `go test ./tests/...` from `active-goference/`, and
+Run `go build ./...` and `go test ./...` from `active-goference/`, and
 report the exact commands and their result. Benchmark claims need a matching
-`-benchmem` run on the machine you describe; do not cite numbers from `doc/`
+`-benchmem` run on the machine you describe; do not cite numbers from the guides at `docs/`
 without re-running them.
