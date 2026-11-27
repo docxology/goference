@@ -42,7 +42,8 @@ isolate runs.
 ```bash
 go test ./tests/... -v
 go test ./tests/... -bench=. -benchmem
-go test ./tests/... -cover -coverprofile=coverage.out
+go test -count=1 -coverpkg=./pkg/... -coverprofile=coverage.out ./tests/...
+go tool cover -func=coverage.out
 ```
 
 Six test files cover beliefs, inference, planning, core behaviour, utilities, and
